@@ -1,11 +1,11 @@
 import { useEffect, useState, useMemo } from "react";
-import logo from './logo.svg';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import './main-page.css';
 import Header from "./header";
 
 function App() {
   
-  // state is private data for the component that survives rerender
+  // state is private data for the component that survives re-render
   // props can be used to pass on state to other components but the state object is interal to the component
   // we call the useState function and pass it the intital value, in the case an empty array of houses
   // the state function returns an array containing two items
@@ -14,10 +14,9 @@ function App() {
   const [allHouses, setAllHouses] = useState([])
 
   // useEffect allows us to create side effects when the state of a component changes
-  // useEffect is a function
   // as the first parameter we call enother function that fetches the data file
-  // the second is letting it know when to execute the provided function, an array of values
-  // anytime when the these values changes the function is executes
+  // the second is letting it know when to execute the provided function, could be an array of values
+  // anytime when these values change the function is executed
   // leaving the array empty, the function will only run the first time the component renders 
   useEffect(()=> {
     // an asynchronous function fetches the object and puts it into json, which is an array of houses
@@ -30,24 +29,23 @@ function App() {
     fetchHouses();
   }, []);
 
-
-  // when the component renders allHouses will be an empty array
-  // useEffect will still fire because ITS empty array in its second parameter will render once
-  // the houses are being loaded asynchously, so as they are being gathered, the other code is being executed
-  // that allows for the yet to be determined featured house to be empty
-  // once the state is set, it causes a rerender and the if statement below is executed
-  let featuredHouse = {};
-  if (allHouses.length) {
-    const randomIndex = Math.floor(Math.random() * allHouses.length);
-    featuredHouse = allHouses[randomIndex]
-  }
-
-
+  // we want to determine a featuredHouse and not change it on every re-render, so we cache it with useMemo()
+  // just like useEffect(), it uses a function as a first parameter that has to return a value
+  // an array of values to keep track of as a second parameter [allHouses] that waits for it to change
+  // in this case it will change when its first loaded into state and second when the houses are loaded
+  // when the values re-render outside of this condition, it will be loaded from cache
+  // keeping our featured house from changing too often
+  const featuredHouse = useMemo(() => {
+    if (allHouses.length) {
+      const randomIndex = Math.floor(Math.random() * allHouses.length);
+      return allHouses[randomIndex]
+    }
+  }, [allHouses])
+  
   return (
-    <div className="container">
-      <Header subtitle="Providing houses all over the world" 
-      />
-    </div>
+    <Router>
+      <div className="container"></div>
+    </Router>
   );
 }
 
