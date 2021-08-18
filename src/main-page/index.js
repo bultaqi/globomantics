@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import './main-page.css';
 import Header from "./header";
 import FeaturedHouse from "./featured-house";
+import SearchResults from "../search-results.js";
+import HouseFilter from "./house-filter";
 
 function App() {
   
@@ -54,8 +56,11 @@ function App() {
     <Router>
       <div className="container">
         <Header subtitle="Providing houses all over the world" />
-        {/* <HouseFilter allHouses={allHouses} /> */}
+        <HouseFilter allHouses={allHouses} />
         <Switch>
+          <Route path="/searchresults/:country">
+            <SearchResults allHouses={allHouses} />
+          </Route>
           <Route path="/">
             <FeaturedHouse house={featuredHouse}></FeaturedHouse>
           </Route>
@@ -64,5 +69,9 @@ function App() {
     </Router>
   );
 }
+
+// Routing order matters, top-down, and partial matches are accepted as well
+// partial matches can be over-rulled by using the exact path,or swithc their posistion
+
 
 export default App;

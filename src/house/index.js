@@ -1,5 +1,7 @@
 import "./house.css";
 
+// the House component takes the featured house passed from FeaturedHouse and passes it as a prop here
+// and this comp takes all the attributes of the passed prop and displays them here
 const House = ({ house }) => {
     return (
         <div>

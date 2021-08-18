@@ -1,5 +1,7 @@
 import House from "../house/index"
 
+// featuredHouse is called when the the path "./" is rendered and the useMemo() passes its determind house
+// gets passed here as prop an if it is "truthy" House comp is rendered and the featured house is passed to it
 const FeaturedHouse = ({ house }) => {
     if (house)
         return ( 
