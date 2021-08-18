@@ -1,5 +1,5 @@
-import { useParams } from "react-router-dom"
 import SearchResultsRow from "./search-results-row";
+import { useParams } from "react-router-dom"
 
 const SearchResults = ({ allHouses }) => {
     // value in the URL path from house-filter.js is pulled and used as the parmameter 
@@ -9,7 +9,7 @@ const SearchResults = ({ allHouses }) => {
 
     return (
         <div className="mt-2">
-            <h4>Results for { country }:</h4>
+            <h4>Results for {country}:</h4>
             <table className="table table-hover">
                 <tbody>
                     {filteredHouses.map((h) => (

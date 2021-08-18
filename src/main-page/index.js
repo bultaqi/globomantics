@@ -5,6 +5,7 @@ import Header from "./header";
 import FeaturedHouse from "./featured-house";
 import SearchResults from "../search-results.js";
 import HouseFilter from "./house-filter";
+import HouseFromQuery from "../house/HouseFromQuery";
 
 function App() {
   
@@ -61,6 +62,11 @@ function App() {
           <Route path="/searchresults/:country">
             <SearchResults allHouses={allHouses} />
           </Route>
+
+          <Route path="/house/:id">
+            <HouseFromQuery allHouses={allHouses} />
+          </Route>
+
           <Route path="/">
             <FeaturedHouse house={featuredHouse}></FeaturedHouse>
           </Route>
@@ -72,6 +78,7 @@ function App() {
 
 // Routing order matters, top-down, and partial matches are accepted as well
 // partial matches can be over-rulled by using the exact path,or swithc their posistion
+// the ":" in the path lets the URL know it is value that is being passed
 
 
 export default App;
