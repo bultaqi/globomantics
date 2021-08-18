@@ -2,6 +2,7 @@ import { useEffect, useState, useMemo } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import './main-page.css';
 import Header from "./header";
+import FeaturedHouse from "./featured-house";
 
 function App() {
   
@@ -42,9 +43,24 @@ function App() {
     }
   }, [allHouses])
   
+
+  // a page in a single-page app isn't a page where the browser can redirect to by using the server
+  // all the UI is in the browser, but we ALSO want to use the browsers history so a user can use the back button
+  // This is where react-router-dom comes into play, which must be installed seperately
+  // below a new Router component that alaways has to be displayed no matter what the url in the browser is
+  // a Bootstrap container div, and rendering the Header comp passing a subtitle
+  // Switch will check the child Route comp. to see if theres a match bewtween the actual URL and the Route path 
   return (
     <Router>
-      <div className="container"></div>
+      <div className="container">
+        <Header subtitle="Providing houses all over the world" />
+        {/* <HouseFilter allHouses={allHouses} /> */}
+        <Switch>
+          <Route path="/">
+            <FeaturedHouse house={featuredHouse}></FeaturedHouse>
+          </Route>
+        </Switch>
+      </div>
     </Router>
   );
 }
