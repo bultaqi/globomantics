@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./house.css";
+import "./House.css";
 import emailIcon from "./Email.png";
 import Inquiry from "./Inquiry";
 
@@ -7,6 +7,7 @@ import Inquiry from "./Inquiry";
 // the House component takes the featured house passed from FeaturedHouse and passes it as a prop here
 // and this comp takes all the attributes of the passed prop and displays them here
 const House = ({ house }) => {
+    // introducing state that is intialized as a false boolean
     const [inquiryShown, setInquiryShown] = useState(false);
     const inquiryClick = () => {
         setInquiryShown(!inquiryShown);
@@ -31,6 +32,8 @@ const House = ({ house }) => {
                         src={emailIcon}
                         height="50"
                         alt="email icon"
+                        // the onClick event toggles the boolean from false to true
+                        // only if its true, will the form stored in the Inquiry component fire and display
                         onClick={inquiryClick}
                     />
                     {inquiryShown && <Inquiry house={house} />}

@@ -1,6 +1,6 @@
 
 import { useHistory } from "react-router-dom";
-import "./search-results-row.css"
+import "./SearchResultsRow.css"
 
 const SearchResultsRow = ({ house }) => {
     const history = useHistory();

@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import House from "./index";
+import House from "./House";
 
 
 const HouseFromQuery = ({ allHouses }) => {

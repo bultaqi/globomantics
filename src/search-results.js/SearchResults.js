@@ -1,4 +1,4 @@
-import SearchResultsRow from "./search-results-row";
+import SearchResultsRow from "./SearchResultsRow";
 import { useParams } from "react-router-dom"
 
 const SearchResults = ({ allHouses }) => {
